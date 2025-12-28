@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7ciuwtnim7or"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i670t"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i670t"]
+material = SubResource("StandardMaterial3D_i670t")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm48i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hm48i"]
+material = SubResource("StandardMaterial3D_hm48i")
+top_radius = 0.0
+bottom_radius = 0.05
+height = 0.1
+
+[node name="Vector" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="Rod" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("CylinderMesh_i670t")
+
+[node name="Cone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_hm48i")

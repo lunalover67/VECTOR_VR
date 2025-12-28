@@ -12,7 +12,7 @@ config_version=5
 
 config/name="VECTOR"
 run/main_scene="res://Main.tscn"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -22,6 +22,13 @@ window/size/viewport_height=2208
 window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
+
+[input]
+
+reset={
+"deadzone": 0.2,
+"events": []
+}
 
 [rendering]
 
