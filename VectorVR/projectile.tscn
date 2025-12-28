@@ -15,12 +15,13 @@ radius = 0.1
 script = ExtResource("1_dgwo2")
 
 [node name="velocity_X" parent="." instance=ExtResource("2_qxf0c")]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.125, 0, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="velocity_Y" parent="." instance=ExtResource("2_qxf0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="velocity_Z" parent="." instance=ExtResource("2_qxf0c")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.125)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 
 [node name="Ball" parent="." instance=ExtResource("1_a85iw")]
 

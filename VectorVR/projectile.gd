@@ -5,6 +5,8 @@ var vector_velocity_y : Node3D
 var vector_velocity_z : Node3D
 var ball : XRToolsPickable
 
+@export var vector_scale : int = 1.5
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,12 +14,12 @@ func _ready() -> void:
 	initialize_nodes()
 	set_velocity_colours()
 	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	vector_velocity_x.global_transform.origin = ball.global_transform.origin
-	vector_velocity_y.global_transform.origin = ball.global_transform.origin
-	vector_velocity_z.global_transform.origin = ball.global_transform.origin
+	#ball.linear_velocity = Vector3.ZERO
+	process_vectors(delta)
 
 
 # ----
@@ -29,8 +31,6 @@ func initialize_nodes() -> void:
 	ball = get_node("Ball")
 
 func set_velocity_colours() -> void:
-	 # For vector_velocity_x (Red)
-	
 	
 	# X-axis (Red)
 	var red : StandardMaterial3D = StandardMaterial3D.new()
@@ -56,4 +56,26 @@ func set_velocity_colours() -> void:
 	rodZ.set_surface_override_material(0, blue)
 	var coneZ = vector_velocity_z.get_node("Cone") as MeshInstance3D
 	coneZ.set_surface_override_material(0, blue)	
+
+func process_vectors(delta: float) -> void:
 	
+	# velocity vectors
+	vector_velocity_x.global_transform.origin = ball.global_transform.origin
+	vector_velocity_y.global_transform.origin = ball.global_transform.origin
+	vector_velocity_z.global_transform.origin = ball.global_transform.origin
+
+	var ball_velocity : Vector3 = ball.linear_velocity 
+	
+	var lerp_speed := 10.0
+
+# X vector
+	var target_x := ball_velocity.x * vector_scale
+	vector_velocity_x.scale.y = lerp(vector_velocity_x.scale.y, target_x, lerp_speed * delta)
+
+	# Y vector
+	var target_y := ball_velocity.y * vector_scale
+	vector_velocity_y.scale.y = lerp(vector_velocity_y.scale.y, target_y, lerp_speed * delta)
+
+# Z vector
+	var target_z := ball_velocity.z * vector_scale
+	vector_velocity_z.scale.y = lerp(vector_velocity_z.scale.y, target_z, lerp_speed * delta)
