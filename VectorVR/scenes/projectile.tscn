@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnpdu5sibk8ec"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_a85iw"]
+[ext_resource type="Script" uid="uid://basiyyfrynnom" path="res://scripts/projectile.gd" id="1_dgwo2"]
+[ext_resource type="PackedScene" uid="uid://b7ciuwtnim7or" path="res://scenes/vector.tscn" id="2_qxf0c"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qxf0c"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qxf0c"]
+radius = 0.1
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_dgwo2")
+
+[node name="Ball" parent="." instance=ExtResource("1_a85iw")]
+ranged_grab_method = 2
+ranged_grab_speed = 5.0
+
+[node name="BallMesh" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_qxf0c")
+
+[node name="BallCollision" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_qxf0c")
+
+[node name="velocities" type="Node3D" parent="."]
+
+[node name="velocity_RESULTANT" parent="velocities" instance=ExtResource("2_qxf0c")]
+transform = Transform3D(0.70710677, 0.49999997, 0.49999997, 0, 0.70710677, -0.70710677, -0.70710677, 0.49999997, 0.49999997, 0, 0, 0)
+
+[node name="velocity_X" parent="velocities" instance=ExtResource("2_qxf0c")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="velocity_Y" parent="velocities" instance=ExtResource("2_qxf0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="velocity_Z" parent="velocities" instance=ExtResource("2_qxf0c")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="forces" type="Node3D" parent="."]
+
+[node name="force_GRAVITY" parent="forces" instance=ExtResource("2_qxf0c")]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)

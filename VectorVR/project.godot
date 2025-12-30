@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="VECTOR"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [display]
 
@@ -22,6 +22,14 @@ window/size/viewport_height=2208
 window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://scenes/": "orange",
+"res://scripts/": "teal"
+}
 
 [input]
 
@@ -38,5 +46,6 @@ textures/vram_compression/import_etc2_astc=true
 [xr]
 
 openxr/enabled=true
+openxr/default_action_map="res://scenes/openxr_action_map.tres"
 openxr/startup_alert=false
 shaders/enabled=true

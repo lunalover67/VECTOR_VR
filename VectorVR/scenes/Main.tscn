@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://4ujuqo0mv8m7"]
+
+[ext_resource type="Script" uid="uid://c1qxsrn4pcu30" path="res://scripts/Main.gd" id="1_rarhs"]
+[ext_resource type="PackedScene" uid="uid://bkfaxgc2mafj" path="res://scenes/user.tscn" id="2_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://3iej8ml1kie1" path="res://scenes/world.tscn" id="3_c01mt"]
+[ext_resource type="PackedScene" uid="uid://dnpdu5sibk8ec" path="res://scenes/projectile.tscn" id="4_nxtc6"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_rarhs")
+
+[node name="user" parent="." instance=ExtResource("2_vcsgt")]
+
+[node name="world" parent="." instance=ExtResource("3_c01mt")]
+
+[node name="projectile" parent="." instance=ExtResource("4_nxtc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3921005, 0.79711366, -2.910421)

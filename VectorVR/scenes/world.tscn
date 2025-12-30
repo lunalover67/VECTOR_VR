@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://3iej8ml1kie1"]
 
-[ext_resource type="Texture2D" uid="uid://b5dgn2go0ctdr" path="res://grid_green_1024x1024.png" id="1_f3sb7"]
-[ext_resource type="Texture2D" uid="uid://cijua5syr0bw0" path="res://grid_black_512x512.png" id="1_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://b5dgn2go0ctdr" path="res://assets/grid_green_1024x1024.png" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://cijua5syr0bw0" path="res://assets/grid_black_512x512.png" id="1_fj7yv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 
@@ -45,7 +45,20 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
 
+[node name="Table2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1.6501006, 0.22160414, -2.646144e-07, 0.04819735, -3.0681155, 1.02790395e-07, -2.2980237e-07, -1.1186129e-07, 0.9999996, -2.3994389, -0.8527492, 2.2906435)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.6)
+mesh = SubResource("BoxMesh_gbfbk")
+skeleton = NodePath("../../Table2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.6)
+shape = SubResource("ConvexPolygonShape3D_fj7yv")
+
 [node name="Table" type="StaticBody3D" parent="."]
+transform = Transform3D(0.8572065, 2.319452, -5.3202193e-08, -2.0151482, 0.98665184, -8.044687e-08, -1.1650707e-07, 2.0277297e-07, 1.0000001, 0.25902686, -1, 2.2903488)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.6)
