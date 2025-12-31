@@ -117,7 +117,7 @@ func handle_reset() -> void:
 
 func handle_time_toggle() -> void:
 	# Using B/Y button for time control
-	if right_controller.is_button_pressed("by_button"):
+	if right_controller.is_button_pressed("by_button") or Input.is_action_pressed("time_toggle_key"):
 		if not time_toggle_flag:
 			time_paused = !time_paused  # Toggle pause state
 			emit_signal("time_toggled_signal", time_paused)

@@ -12,22 +12,50 @@ var ball : XRToolsPickable
 
 @export var vector_scale : int = 1.5
 
+var is_paused: bool = false
+var pause_label: Label3D
+var frozen_velocity: Vector3 = Vector3.ZERO
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	initialize_nodes()
 	set_velocity_colours()
-	
-	
+	create_pause_hud()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func create_pause_hud() -> void:
+	# Create label as a child of the camera for HUD effect
+	pause_label = Label3D.new()
+	pause_label.text = "[TIME PAUSED]"
+	pause_label.font_size = 48
+	pause_label.outline_size = 8
+	pause_label.modulate = Color(1, 0, 0, 1)  # Red color
+	pause_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	pause_label.visible = false
+	
+	# Position it in front of camera (will be updated in _process)
+	pause_label.position = Vector3(0, 0.3, -1.5)  # Above center, 1.5m away
+	
+	# Find the camera and attach label to it
+	var camera = get_node("/root/Main/user/XROrigin3D/XRCamera3D")
+	if camera:
+		camera.add_child(pause_label)
+	else:
+		# Fallback: add to scene root
+		add_child(pause_label)
+
 func _process(delta: float) -> void:
-	#ball.linear_velocity = Vector3.ZERO
-	process_vectors(delta)
+	if not is_paused:
+		process_vectors(delta)
+		pause_label.visible = false
+	else:
+		display_frozen_vectors()
+		pause_label.visible = true
 
-
-# ----
+# Rest of your code stays the same...
+func display_frozen_vectors() -> void:
+	velocity_vectors.visible = true
+	vector_gravity.visible = true
+	velocity_vectors.global_position = ball.global_position
+	vector_gravity.global_position = ball.global_position
 
 func initialize_nodes() -> void:
 	vector_velocity_x = get_node("velocities/velocity_X")
@@ -35,9 +63,7 @@ func initialize_nodes() -> void:
 	vector_velocity_z = get_node("velocities/velocity_Z")
 	vector_velocity_resultant = get_node("velocities/velocity_RESULTANT")
 	velocity_vectors = get_node("velocities")
-	
 	vector_gravity = get_node("forces/force_GRAVITY")
-	
 	ball = get_node("Ball")
 
 func set_velocity_colours() -> void:
@@ -90,6 +116,9 @@ func set_velocity_colours() -> void:
 
 
 func process_vectors(delta: float) -> void:
+	# Make sure vectors are visible when not paused
+	velocity_vectors.visible = true
+	vector_gravity.visible = true
 	
 	# Position all vectors at the ball's location
 	velocity_vectors.global_position = ball.global_position
