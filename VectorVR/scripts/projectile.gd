@@ -88,50 +88,85 @@ func set_velocity_colours() -> void:
 	
 	
 
+
 func process_vectors(delta: float) -> void:
 	
-	# velocity vectors
+	# Position all vectors at the ball's location
 	velocity_vectors.global_position = ball.global_position
 	vector_gravity.global_position = ball.global_position
 	
-	#vector_velocity_x.global_position = ball.global_position
-	#vector_velocity_y.global_position = ball.global_position
-	#vector_velocity_z.global_position = ball.global_position
-	#vector_velocity_resultant.global_position = ball.global_position
-	
-	
-	
 	var ball_velocity : Vector3 = ball.linear_velocity 
-	
 	var lerp_speed : float = 10.0
 
-# X vector
+	# ===== COMPONENT VECTORS (X, Y, Z) =====
+	# These show individual velocity components along each world axis
+	
+	# X component (side-to-side motion)
 	var target_x : float = ball_velocity.x * vector_scale
 	vector_velocity_x.scale.y = lerp(vector_velocity_x.scale.y, target_x, lerp_speed * delta)
 
-	# Y vector
+	# Y component (up/down motion)
 	var target_y : float = ball_velocity.y * vector_scale
 	vector_velocity_y.scale.y = lerp(vector_velocity_y.scale.y, target_y, lerp_speed * delta)
 
-# Z vector
+	# Z component (forward/back motion)
 	var target_z : float = ball_velocity.z * vector_scale
 	vector_velocity_z.scale.y = lerp(vector_velocity_z.scale.y, target_z, lerp_speed * delta)
 
-	# resultant vector
+	# ===== RESULTANT VECTOR (total velocity) ===== <--------------------------- claude below
+	# This shows the actual direction and magnitude of movement
 	
-	# a) apply stretch via magnitude
-	var target_resultant : float = ball_velocity.length() * vector_scale
-	vector_velocity_resultant.scale.y = lerp(vector_velocity_resultant.scale.y, target_resultant, lerp_speed * delta)
+	if ball_velocity.length() > 0.01:  # Only show if there's actual velocity
+		var magnitude = ball_velocity.length()
+		var target_scale_y = magnitude * vector_scale
+		
+		# STEP 1: Reset transform to remove any inherited rotations
+		# This ensures we start from a clean slate (identity = no rotation)
+		vector_velocity_resultant.transform = Transform3D.IDENTITY
+		vector_velocity_resultant.scale.y = target_scale_y
+		
+		# STEP 2: Get the direction we want to point (normalized = length of 1)
+		var velocity_normalized = ball_velocity.normalized()
+		
+		# STEP 3: Build a complete rotation basis
+		# A basis needs 3 perpendicular axes (x, y, z) to define a 3D rotation
+		var target_basis = Basis()
+		
+		# Set Y axis to point in velocity direction (our arrow points up in +Y)
+		target_basis.y = velocity_normalized
+		
+		# STEP 4: Calculate the other two axes (X and Z) so they're perpendicular
+		# We use the cross product which gives us a vector perpendicular to both inputs
+		
+		if abs(velocity_normalized.y) < 0.99:
+			# Normal case: velocity is mostly horizontal
+			# Cross with world UP to get a perpendicular X axis
+			target_basis.x = velocity_normalized.cross(Vector3.UP).normalized()
+			# Cross X with Y to get Z (completes the perpendicular trio)
+			target_basis.z = target_basis.x.cross(velocity_normalized).normalized()
+		else:
+			# Edge case: velocity points nearly straight up/down
+			# Using UP would cause issues (can't cross a vector with itself)
+			# So we use RIGHT instead as our reference
+			target_basis.z = velocity_normalized.cross(Vector3.RIGHT).normalized()
+			target_basis.x = velocity_normalized.cross(target_basis.z).normalized()
+		
+		# STEP 5: Apply the rotation
+		vector_velocity_resultant.basis = target_basis
+		
+		# STEP 6: Reapply scale (setting basis can affect scale)
+		vector_velocity_resultant.scale = Vector3(1.0, target_scale_y, 1.0)
+		
+	else:
+		# No velocity - shrink arrow to invisible
+		vector_velocity_resultant.scale.y = lerp(vector_velocity_resultant.scale.y, 0.0, lerp_speed * delta)
+		vector_velocity_resultant.scale.x = 1.0
+		vector_velocity_resultant.scale.z = 1.0
 	
-	# b) set its orientation to match actual velocity
 	
+	# ===== FORCES =====
 	
-	
-	# FORCES
-	
-	# gravity // Fg = mg // for some reason mass doesnt seem to affect anything actually (vector does change)
-	
-	var target_grav : float = ball.mass * ball.gravity_scale * vector_scale # * 9.81
+	# Gravity force vector (Fg = mg)
+	# Note: This just scales, doesn't rotate (gravity always points down)
+	var target_grav : float = ball.mass * ball.gravity_scale * vector_scale
 	vector_gravity.scale.y = lerp(vector_gravity.scale.y, target_grav, lerp_speed * delta)
-	
-	

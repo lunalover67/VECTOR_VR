@@ -1,5 +1,11 @@
 extends XROrigin3D
 
+# signal
+
+signal time_toggled_signal(is_paused: bool)
+
+
+
 # useful nodes
 var left_controller : XRController3D
 var right_controller : XRController3D
@@ -7,7 +13,11 @@ var camera : XRCamera3D
 var player_body : CharacterBody3D
 
 # flag for reset
-var reset_toggle : bool = false
+var reset_flag : bool = false
+
+# flag for time toggle
+var time_toggle_flag : bool = false
+var time_paused : bool = false
 
 # movement settings
 var move_speed : float = 2.0
@@ -23,6 +33,7 @@ func _process(delta: float) -> void:
 	handle_movement(delta)
 	handle_turning(delta)
 	handle_reset()
+	handle_time_toggle()
 
 
 # ---- useful stuff -------
@@ -87,7 +98,7 @@ var start_position : Vector3 = Vector3(0, 1, 0)
 var start_rotation : Vector3 = Vector3.ZERO
 
 func reset_pressed() -> void:
-	reset_toggle = true
+	reset_flag = true
 
 func reset_experience() -> void:
 
@@ -98,8 +109,18 @@ func reset_experience() -> void:
 # trigger flag and whatnot
 func handle_reset() -> void:
 	if left_controller.is_button_pressed("ax_button"):
-		if not reset_toggle:
+		if not reset_flag:
 			reset_experience()
-			reset_toggle = true
+			reset_flag = true
 	else:
-		reset_toggle = false
+		reset_flag = false
+
+func handle_time_toggle() -> void:
+	# Using B/Y button for time control
+	if right_controller.is_button_pressed("by_button"):
+		if not time_toggle_flag:
+			time_paused = !time_paused  # Toggle pause state
+			emit_signal("time_toggled_signal", time_paused)
+			time_toggle_flag = true
+	else:
+		time_toggle_flag = false
