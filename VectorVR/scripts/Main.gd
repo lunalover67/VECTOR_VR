@@ -59,7 +59,49 @@ func on_ball_teleport_called(right_hand_pos : Vector3):
 	
 
 func on_tablet_teleport_called(left_hand_pos : Vector3, left_hand_basis : Basis):
-	pass #implement logic here
+	var pickable = tablet.get_node("PickableObject")
+	
+	if pickable:
+		var camera = user_node.get_node("Controller/Camera")
+		
+		# Create a new basis for the tablet orientation
+		var tablet_basis = Basis()
+		
+		# Calculate direction from hand to camera (for tablet to face player)
+		var to_camera = (camera.global_position - left_hand_pos).normalized()
+		
+		# The tablet's "up" should align with the hand's up direction (thumb direction)
+		tablet_basis.y = left_hand_basis.y
+		
+		# The tablet's "forward" (negative Z) should point toward the camera
+		# Project to_camera onto the plane perpendicular to the hand's up direction
+		var forward = to_camera - to_camera.dot(tablet_basis.y) * tablet_basis.y
+		if forward.length() > 0.01:
+			forward = forward.normalized()
+			tablet_basis.z = -forward
+		else:
+			tablet_basis.z = -left_hand_basis.z
+		
+		# Calculate the right direction (X-axis) to complete the basis
+		tablet_basis.x = tablet_basis.y.cross(tablet_basis.z).normalized()
+		
+		# Recalculate Z to ensure orthonormality
+		tablet_basis.z = tablet_basis.x.cross(tablet_basis.y).normalized()
+		
+		# Rotate 90 degrees to the right around the Y-axis
+		var rotation_adjustment = Basis(Vector3.UP, PI/2)
+		tablet_basis = tablet_basis * rotation_adjustment
+		
+		# Calculate offset position
+		var offset_position = left_hand_pos + tablet_basis.z * -0.19 + tablet_basis.x * 0.07
+		
+		# Apply to the pickable object
+		pickable.global_basis = tablet_basis
+		pickable.global_position = offset_position
+		
+		# Reset velocities
+		pickable.linear_velocity = Vector3.ZERO
+		pickable.angular_velocity = Vector3.ZERO
 
 func _process(_delta: float) -> void:
 	# If paused and ball is picked up, update stored position

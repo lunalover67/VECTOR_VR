@@ -116,7 +116,7 @@ func teleport_ball() -> void:
 
 func teleport_tablet() -> void:
 	print("recievd")
-	emit_signal("teleport_tablet_signal", left_controller.global_position, left_controller.basis)
+	emit_signal("teleport_tablet_signal", left_controller.global_position, left_controller.global_basis)
 
 # trigger flag and whatnot
 func handle_ball_teleport() -> void:
