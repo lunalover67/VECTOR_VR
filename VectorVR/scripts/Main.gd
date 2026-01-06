@@ -10,6 +10,7 @@ var m_transformVr : Transform3D
 var user_node : Node3D
 var projectile_node : Node3D
 var ball : RigidBody3D
+var tablet : Node3D
 
 # Time-stop variables
 var stored_linear_velocity: Vector3 = Vector3.ZERO
@@ -42,19 +43,23 @@ func initialize_references():
 	user_node = get_node("user")
 	projectile_node = get_node("projectile")
 	ball = projectile_node.get_node("Ball")
-
+	tablet = get_node("tablet")
 		
 	var xr_origin = user_node.get_node("Controller")
 	xr_origin.connect("time_toggled_signal", Callable(self, "_on_time_control_pressed"))
-	xr_origin.connect("reset_ball", Callable(self, "on_reset_called"))
+	xr_origin.connect("teleport_ball_signal", Callable(self, "on_ball_teleport_called"))
+	xr_origin.connect("teleport_tablet_signal", Callable(self, "on_tablet_teleport_called"))
 
-func on_reset_called(right_hand_pos : Vector3):
+func on_ball_teleport_called(right_hand_pos : Vector3):
 	var new_ball_pos = right_hand_pos
 	new_ball_pos.y += 0.1
 	ball.linear_velocity = Vector3.ZERO
 	ball.angular_velocity = Vector3.ZERO
 	ball.global_position = new_ball_pos
 	
+
+func on_tablet_teleport_called(left_hand_pos : Vector3, left_hand_basis : Basis):
+	pass #implement logic here
 
 func _process(_delta: float) -> void:
 	# If paused and ball is picked up, update stored position

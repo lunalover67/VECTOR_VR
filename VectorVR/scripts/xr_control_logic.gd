@@ -3,8 +3,8 @@ extends XROrigin3D
 # signal
 
 signal time_toggled_signal(is_paused: bool)
-signal reset_ball(right_hand_position: Vector3)
-
+signal teleport_ball_signal(right_hand_position: Vector3)
+signal teleport_tablet_signal(left_hand_position: Vector3, left_hand_basis: Basis)
 
 # useful nodes
 var left_controller : XRController3D
@@ -13,7 +13,8 @@ var camera : XRCamera3D
 var player_body : CharacterBody3D
 
 # flag for reset
-var reset_flag : bool = false
+var ball_teleport_flag : bool = false
+var tablet_teleport_flag : bool = false
 
 # flag for time toggle
 var time_toggle_flag : bool = false
@@ -41,7 +42,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_movement(delta)
 	handle_turning(delta)
-	handle_reset()
+	handle_ball_teleport()
+	handle_tablet_teleport()
 	handle_time_toggle()
 	handle_time_slow()
 
@@ -106,22 +108,32 @@ func handle_turning(delta: float) -> void:
 
 # ----- reset stuff ------ (will need to add ball too)
 
-func reset_pressed() -> void:
-	reset_flag = true
+func ball_teleport_pressed() -> void:
+	ball_teleport_flag = true
 
-func reset_experience() -> void:
-	emit_signal("reset_ball", right_controller.global_position)
+func teleport_ball() -> void:
+	emit_signal("teleport_ball_signal", right_controller.global_position)
 
+func teleport_tablet() -> void:
+	print("recievd")
+	emit_signal("teleport_tablet_signal", left_controller.global_position, left_controller.basis)
 
 # trigger flag and whatnot
-func handle_reset() -> void:
+func handle_ball_teleport() -> void:
 	if right_controller.is_button_pressed("ax_button") or Input.is_action_pressed("ball_reset_key"):
-		if not reset_flag:
-			reset_experience()
-			reset_flag = true
+		if not ball_teleport_flag:
+			teleport_ball()
+			ball_teleport_flag = true
 	else:
-		reset_flag = false
-		
+		ball_teleport_flag = false
+
+func handle_tablet_teleport() -> void:
+	if left_controller.is_button_pressed("ax_button") or Input.is_action_pressed("tablet_reset_key"):
+		if not tablet_teleport_flag:
+			teleport_tablet()
+			tablet_teleport_flag = true
+	else:
+		tablet_teleport_flag = false
 
 func handle_time_toggle() -> void:
 	# Using B/Y button for time control
