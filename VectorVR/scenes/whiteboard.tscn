@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://deff47n1ej5o"]
+
+[ext_resource type="Texture2D" uid="uid://bo0uebflmsc1n" path="res://assets/checker_white_512x512.png" id="1_q8y3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7us60"]
+albedo_texture = ExtResource("1_q8y3l")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_c5l3a"]
+material = SubResource("StandardMaterial3D_7us60")
+size = Vector3(0.02, 1.16, 2.33)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8y3l"]
+size = Vector3(0.02, 1.16, 2.33)
+
+[node name="whiteboard" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_c5l3a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_q8y3l")

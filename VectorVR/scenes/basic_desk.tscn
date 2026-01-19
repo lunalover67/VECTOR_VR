@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5h7afil2do71"]
+
+[ext_resource type="PackedScene" uid="uid://cn7shvpou4yu2" path="res://scenes/basic_table.tscn" id="1_fspjl"]
+[ext_resource type="PackedScene" uid="uid://qnh2o76t4aij" path="res://scenes/basic_chair.tscn" id="2_bajcw"]
+
+[node name="basic_desk" type="Node3D"]
+
+[node name="basic_table" parent="." instance=ExtResource("1_fspjl")]
+
+[node name="basic_chair" parent="." instance=ExtResource("2_bajcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.085, 0)

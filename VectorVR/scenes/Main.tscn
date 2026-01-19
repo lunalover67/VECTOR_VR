@@ -10,11 +10,13 @@
 script = ExtResource("1_rarhs")
 
 [node name="user" parent="." instance=ExtResource("2_vcsgt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.8000001, 0, -5)
 
 [node name="world" parent="." instance=ExtResource("3_c01mt")]
+transform = Transform3D(-1.05, 0, -1.5854559e-07, 0, 1.05, 0, 1.5854559e-07, 0, -1.05, 0, 0, 0)
 
 [node name="projectile" parent="." instance=ExtResource("4_nxtc6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3921005, 0.79711366, -2.910421)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7078996, 0.5243877, -4.910421)
 
 [node name="tablet" parent="." instance=ExtResource("5_vcsgt")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.8, 0.5, -2.1)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.605068, 0.6013837, -5.4509583)

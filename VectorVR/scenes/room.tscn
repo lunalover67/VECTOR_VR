@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyy02a1w8j0ve"]
+
+[ext_resource type="PackedScene" uid="uid://c5h7afil2do71" path="res://scenes/basic_desk.tscn" id="1_36trf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1tnb"]
+size = Vector3(13, 1.5, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36trf"]
+size = Vector3(13, 1.5, 9)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ffxv4"]
+height = 1.86
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffxv4"]
+size = Vector3(9, 3, 1.5)
+
+[node name="room" type="Node3D"]
+
+[node name="floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7899761, -0.014222145)
+mesh = SubResource("BoxMesh_f1tnb")
+skeleton = NodePath("../../floor2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor2"]
+shape = SubResource("BoxShape3D_36trf")
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_f1tnb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_36trf")
+
+[node name="guy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9227195, 1.6804035, 0.685267)
+mesh = SubResource("CylinderMesh_ffxv4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1.444077, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1059725, -5.1606913)
+mesh = SubResource("BoxMesh_ffxv4")
+
+[node name="basic_desk" parent="." instance=ExtResource("1_36trf")]
+transform = Transform3D(-6.7712435e-08, 0, -1.54908, 0, 1.54908, 0, 1.54908, 0, -6.7712435e-08, -1.8727847, 1.0604063, 0.31445408)

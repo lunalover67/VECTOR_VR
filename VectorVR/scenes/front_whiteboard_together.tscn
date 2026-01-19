@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3f8ul44um2pj"]
+
+[ext_resource type="PackedScene" uid="uid://deff47n1ej5o" path="res://scenes/whiteboard.tscn" id="1_77el6"]
+[ext_resource type="PackedScene" uid="uid://coie14caapqj4" path="res://scenes/under_whiteboard_table.tscn" id="2_naqtl"]
+
+[node name="front_whiteboard_thing" type="Node3D"]
+
+[node name="whiteboard" parent="." instance=ExtResource("1_77el6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16717842, 1.1291091, 0)
+
+[node name="under_whiteboard_table" parent="." instance=ExtResource("2_naqtl")]

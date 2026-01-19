@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://qnh2o76t4aij"]
+
+[ext_resource type="Texture2D" uid="uid://d1wc62nycdsce" path="res://assets/grid_blue_512x512.png" id="1_xvbeh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42ngy"]
+size = Vector3(0.04, 0.81, 0.62)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27tdd"]
+albedo_texture = ExtResource("1_xvbeh")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_42ngy"]
+material = SubResource("StandardMaterial3D_27tdd")
+size = Vector3(0.04, 0.81, 0.62)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swnlp"]
+albedo_texture = ExtResource("1_xvbeh")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wav53"]
+material = SubResource("StandardMaterial3D_swnlp")
+size = Vector3(0.38, 0.45, 0.62)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wav53"]
+size = Vector3(0.38, 0.45, 0.62)
+
+[node name="basic_chair" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+shape = SubResource("BoxShape3D_42ngy")
+
+[node name="back_wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17959365, 0)
+mesh = SubResource("BoxMesh_42ngy")
+
+[node name="seat" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+mesh = SubResource("BoxMesh_wav53")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+shape = SubResource("BoxShape3D_wav53")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn7shvpou4yu2"]
+
+[ext_resource type="Material" uid="uid://j426cw5dv1jo" path="res://assets/bench_base_material.tres" id="1_4qt6i"]
+[ext_resource type="PackedScene" uid="uid://qnh2o76t4aij" path="res://scenes/basic_chair.tscn" id="1_gxpbn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvhf6"]
+size = Vector3(0.46, 0.62, 0.79)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gxpbn"]
+material = ExtResource("1_4qt6i")
+size = Vector3(0.46, 0.62, 0.79)
+
+[node name="basic_table" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nvhf6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gxpbn")
+
+[node name="basic_chair" parent="." instance=ExtResource("1_gxpbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72617745, -0.077777, -0.0001410842)
+visible = false

@@ -15,15 +15,17 @@ script = ExtResource("1_e81rn")
 [node name="Camera" type="XRCamera3D" parent="Controller"]
 
 [node name="Slowed_Label" type="Label3D" parent="Controller/Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35476854, -0.65, -1.3440793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, -0.1074979, -0.29833943)
 visible = false
+pixel_size = 0.0005
 modulate = Color(1, 1, 1, 0.45882353)
 text = "<SLOWED>"
 font = ExtResource("2_dekx4")
 
 [node name="Paused_Label" type="Label3D" parent="Controller/Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44470578, -0.65, -1.3440793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -0.1074979, -0.29833943)
 visible = false
+pixel_size = 0.0005
 modulate = Color(1, 1, 1, 0.9647059)
 text = "<PAUSED>"
 font = ExtResource("2_dekx4")
