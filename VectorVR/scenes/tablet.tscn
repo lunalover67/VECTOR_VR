@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnk427tb46pb4"]
+[gd_scene load_steps=12 format=3 uid="uid://bnk427tb46pb4"]
 
 [ext_resource type="PackedScene" uid="uid://b7ye7wyybjxxw" path="res://assets/tablet.glb" id="1_2qyfy"]
 [ext_resource type="Script" uid="uid://cvayg2k03lwyl" path="res://scripts/tablet.gd" id="1_suit2"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="2_jwrmr"]
+[ext_resource type="FontFile" uid="uid://ddr80kn5lbdxq" path="res://assets/vcr_font.ttf" id="4_5ctd3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suit2"]
 albedo_color = Color(0, 0, 0, 1)
@@ -13,6 +14,23 @@ size = Vector2(0.38, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_suit2"]
 size = Vector3(0.025, 0.318, 0.46)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nk2fr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1e7px"]
+material = SubResource("StandardMaterial3D_nk2fr")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.025
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ctd3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nk2fr"]
+material = SubResource("StandardMaterial3D_5ctd3")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.025
 
 [node name="Tablet" type="Node3D"]
 script = ExtResource("1_suit2")
@@ -33,3 +51,84 @@ mesh = SubResource("PlaneMesh_5ctd3")
 
 [node name="collision" type="CollisionShape3D" parent="PickableObject"]
 shape = SubResource("BoxShape3D_suit2")
+
+[node name="slow_light" type="MeshInstance3D" parent="PickableObject"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.001, 0.145, -0.165)
+mesh = SubResource("CylinderMesh_1e7px")
+skeleton = NodePath("../paused_light")
+
+[node name="paused_light" type="MeshInstance3D" parent="PickableObject"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.001, 0.145, -0.195)
+mesh = SubResource("CylinderMesh_nk2fr")
+
+[node name="title" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335303, 0.10815075, 0.11995389)
+text = "<SIMULATION_DATA/>"
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="mass" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.0133353025, 0.08064872, 0.11773224)
+text = "m = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="time_scale" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-3.676209e-09, 3.6762091e-09, 0.08410186, 3.6762091e-09, 0.08410186, -3.6762091e-09, -0.08410186, 3.676209e-09, -3.676209e-09, 0.0133353, 0.14582185, -0.008870289)
+text = "t_scale = 1.0"
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="gravity" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335302, 0.053817824, 0.117732204)
+text = "g = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="buffer" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335302, 0.037353396, 0.117732204)
+text = "__________________"
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="v_resultant" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.0133353, 0.010015162, 0.11773224)
+modulate = Color(1, 0.64705884, 0, 1)
+text = "V  = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="v_x" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335299, -0.013292072, 0.11773224)
+modulate = Color(1, 0, 0, 1)
+text = "Vx = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="v_y" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335298, -0.036599305, 0.11773224)
+modulate = Color(0, 1, 0, 1)
+text = "Vy = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="v_z" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335297, -0.061251182, 0.11773224)
+modulate = Color(0, 0, 1, 1)
+text = "Vz = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="F_g" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335296, -0.086252704, 0.11773224)
+modulate = Color(0.627, 0.125, 0.941, 1)
+text = "Fg = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+
+[node name="F_n" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.013335295, -0.110644415, 0.11773224)
+modulate = Color(0, 1, 1, 1)
+text = "Fn = "
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0

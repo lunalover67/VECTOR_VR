@@ -106,7 +106,7 @@ func handle_turning(delta: float) -> void:
 			rotate_y(-right_stick.x * turn_speed * delta)
 
 
-# ----- reset stuff ------ (will need to add ball too)
+# ----- reset stuff ------
 
 func ball_teleport_pressed() -> void:
 	ball_teleport_flag = true
@@ -115,12 +115,12 @@ func teleport_ball() -> void:
 	emit_signal("teleport_ball_signal", right_controller.global_position)
 
 func teleport_tablet() -> void:
-	print("recievd")
 	emit_signal("teleport_tablet_signal", left_controller.global_position, left_controller.global_basis)
 
 # trigger flag and whatnot
 func handle_ball_teleport() -> void:
-	if right_controller.is_button_pressed("ax_button") or Input.is_action_pressed("ball_reset_key"):
+	# Right B/Y button teleports ball
+	if right_controller.is_button_pressed("by_button") or Input.is_action_pressed("ball_reset_key"):
 		if not ball_teleport_flag:
 			teleport_ball()
 			ball_teleport_flag = true
@@ -128,7 +128,8 @@ func handle_ball_teleport() -> void:
 		ball_teleport_flag = false
 
 func handle_tablet_teleport() -> void:
-	if left_controller.is_button_pressed("ax_button") or Input.is_action_pressed("tablet_reset_key"):
+	# Left B/Y button teleports tablet
+	if left_controller.is_button_pressed("by_button") or Input.is_action_pressed("tablet_reset_key"):
 		if not tablet_teleport_flag:
 			teleport_tablet()
 			tablet_teleport_flag = true
@@ -136,8 +137,8 @@ func handle_tablet_teleport() -> void:
 		tablet_teleport_flag = false
 
 func handle_time_toggle() -> void:
-	# Using B/Y button for time control
-	if right_controller.is_button_pressed("by_button") or Input.is_action_pressed("time_toggle_key"):
+	# Right trigger pauses time
+	if right_controller.is_button_pressed("trigger_click") or Input.is_action_pressed("time_toggle_key"):
 		if not time_toggle_flag:
 			time_paused = !time_paused  # Toggle pause state
 			emit_signal("time_toggled_signal", time_paused)
@@ -152,12 +153,9 @@ func handle_time_toggle() -> void:
 
 
 func handle_time_slow() -> void:
-	#Engine.time_scale = 0.5
-	
-	# Using B/Y button for time control
-	if right_controller.is_button_pressed("trigger_click") or Input.is_action_pressed("time_slow_key"):
+	# Left trigger slows time
+	if left_controller.is_button_pressed("trigger_click") or Input.is_action_pressed("time_slow_key"):
 		
-		print("thing pressed")
 		if not time_slow_flag:
 			time_slow = !time_slow
 			toggle_slow_time()

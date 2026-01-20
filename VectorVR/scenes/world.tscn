@@ -1,14 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://3iej8ml1kie1"]
+[gd_scene load_steps=23 format=3 uid="uid://3iej8ml1kie1"]
 
+[ext_resource type="Texture2D" uid="uid://cmb7q7wnpk4wb" path="res://assets/skybox_idea.jpg" id="1_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://cdpinguuywttb" path="res://assets/floor_texture.jpg" id="1_qfnet"]
 [ext_resource type="PackedScene" uid="uid://crfjt3cmulh4" path="res://scenes/lab_bench.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://c5h7afil2do71" path="res://scenes/basic_desk.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://c3f8ul44um2pj" path="res://scenes/front_whiteboard_together.tscn" id="5_71j4m"]
 [ext_resource type="Texture2D" uid="uid://n7wub2n1d5or" path="res://assets/funandgames_epstien.jpg" id="5_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cn7shvpou4yu2" path="res://scenes/basic_table.tscn" id="6_qfnet"]
+[ext_resource type="FontFile" uid="uid://ddr80kn5lbdxq" path="res://assets/vcr_font.ttf" id="7_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://onxc7j8nush5" path="res://assets/checker_red_512x512.png" id="7_i7141"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
+sky_top_color = Color(0.38560182, 0.45411357, 0.837305, 1)
+sky_horizon_color = Color(0.76521504, 0.7712276, 0.7832465, 1)
+sky_cover = ExtResource("1_4mrxx")
+ground_bottom_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_w0v8x"]
 sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
@@ -266,10 +272,12 @@ skeleton = NodePath("../basic_desk3")
 transform = Transform3D(3.0452547e-08, 0, 1.0947007, 0, 1.0947008, 0, -1.0947007, 0, 3.0452547e-08, -5.5939846, 1.1334796, 6.0447936)
 pixel_size = 0.01
 text = "Hello SPH4UR! Welcome to my summative!"
+font = ExtResource("7_7r4gi")
 
 [node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(2.3897009e-08, 0, 0.85904396, 0, 0.8590441, 0, -0.85904396, 0, 2.3897009e-08, -5.593985, 0.74340534, 8.477781)
+transform = Transform3D(2.3897009e-08, 0, 0.85904396, 0, 0.8590441, 0, -0.85904396, 0, 2.3897009e-08, -5.593985, 0.74340534, 8.7230215)
 text = "(mike bushkov 2026 — VECTOR VR)"
+font = ExtResource("7_7r4gi")
 
 [node name="basic_table" parent="." instance=ExtResource("6_qfnet")]
 transform = Transform3D(1.3113419e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113419e-07, -5.2509995, -0.065, 11.425069)
