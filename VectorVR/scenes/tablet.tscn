@@ -67,6 +67,22 @@ text = "<SIMULATION_DATA/>"
 font = ExtResource("4_5ctd3")
 horizontal_alignment = 0
 
+[node name="title2" type="Label3D" parent="PickableObject"]
+transform = Transform3D(-4.6148205e-09, 0, -0.10557479, 0, 0.10557479, 0, 0.10557479, 0, -4.6148205e-09, -0.012999986, 0.10053345, -0.19193602)
+text = "// Cheat Sheet:
+
+[EITHER_GRIP] : Grab Object
+
+[LEFT_TRIGGER] : Slow Time
+[RIGHT_TRIGGER] : Stop Time
+
+[B] : Teleport ball to right hand 
+[Y] : Teleport tablet to left hand"
+font = ExtResource("4_5ctd3")
+horizontal_alignment = 0
+vertical_alignment = 0
+line_spacing = 10.0
+
 [node name="mass" type="Label3D" parent="PickableObject"]
 transform = Transform3D(-4.61482e-09, 4.6148205e-09, 0.10557479, 4.6148205e-09, 0.10557479, -4.6148205e-09, -0.10557479, 4.61482e-09, -4.61482e-09, 0.0133353025, 0.08064872, 0.11773224)
 text = "m = "
