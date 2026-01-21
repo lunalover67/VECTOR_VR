@@ -1,12 +1,12 @@
-# VECTOR_VR
+# VECTOR_VR (2026)
 vr app for my physics summative (sph4u)
 
-# tech stack
+## tech stack
 - meta quest 2
 - godot v4.4.1 stable
 - adb for installing onto headset
 
-# screenshots
+## screenshots
 
 ### the map
 <img width="960" height="486" alt="Screenshot from 2026-01-20 13-02-10" src="https://github.com/user-attachments/assets/70220f04-382a-4461-a719-1107263c3993" />
@@ -25,17 +25,17 @@ vr app for my physics summative (sph4u)
 ### normal vector responds to surface
 <img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/79498617-8e9c-43fa-8925-cb9510edf5f1" />
 
-# features
+## features
 - walk around a simple map with a cool skybox
 - whizz a ball around, see its velocity and force vectors in real time
 - too fast? slow down time, or heck, even stop it entirely
 - use the data tablet to get the exact values, use them to model situations and learn about physics
 
-# inspo
+## inspo
 - didnt want to build anything physical for my physics summative (buy materials, store, etc)
 - wanted to learn how to work with vr
 
-# shoutouts / resources
+## shoutouts / resources
 - used this guys (the goat btw) template to get the vr export template: https://soapspangledgames.com/godot/BasicVR.zip
 - xr toolkit was an addon i used, got in on godot's assetlib page
 - cool guy on yt helped with learning / implementing a bunch of features in vr: https://www.youtube.com/@MuddyWolf
