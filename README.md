@@ -2,8 +2,24 @@
 vr app for my physics summative (sph4u)
 
 # screenshots
+
+the map
 <img width="960" height="486" alt="Screenshot from 2026-01-20 13-02-10" src="https://github.com/user-attachments/assets/70220f04-382a-4461-a719-1107263c3993" />
-<img width="920" height="555" alt="Screenshot from 2026-01-19 00-23-23" src="https://github.com/user-attachments/assets/e4fda268-bf22-43c1-ba49-6248c7d12941" />
+
+tablet with cheat sheet at the back
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/7a2edb68-76d4-4918-bc5d-4b4d790c0b74" />
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/2f07bbbc-12dc-4e08-b405-5081039491b7" />
+
+pause time, throw the ball around!
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/ef959563-0bbe-4ebe-b593-aa09b961b7bc" />
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/1dd1c416-e324-4b38-b0f3-30d472c47f8d" />
+
+slow down time
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/9cf88aa3-8c14-4e22-997d-6ed6262705e0" />
+
+normal vector responds to surface
+<img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/79498617-8e9c-43fa-8925-cb9510edf5f1" />
+
 
 # tech stack
 - meta quest 2
