@@ -9,7 +9,9 @@ vr app for my physics summative (sph4u)
 ## screenshots
 
 ### the map
-<img width="960" height="486" alt="Screenshot from 2026-01-20 13-02-10" src="https://github.com/user-attachments/assets/70220f04-382a-4461-a719-1107263c3993" />
+<img width="960" height="486" alt="Screenshot from 2026-01-20 13-03-48" src="https://github.com/user-attachments/assets/810dd1fb-0f8f-4574-92ce-b96cda6395ed" />
+<img width="780" height="454" alt="Screenshot from 2026-01-20 12-50-43" src="https://github.com/user-attachments/assets/58d93d48-dd09-4519-817f-158bffd19bfc" />
+
 
 ### tablet with cheat sheet at the back
 <img width="938" height="910" alt="image" src="https://github.com/user-attachments/assets/7a2edb68-76d4-4918-bc5d-4b4d790c0b74" />
